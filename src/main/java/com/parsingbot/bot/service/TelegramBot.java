@@ -3,6 +3,7 @@ package com.parsingbot.bot.service;
 import com.parsingbot.bot.config.BotConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.parser.Parser;
+import org.parser.Vacancy;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,6 +12,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -67,17 +69,12 @@ public class TelegramBot extends TelegramLongPollingBot {
         long chatId = update.getMessage().getChatId();
         try {
             Parser parser = new Parser();
-            Map<String, Map<String, String>> result = parser.parse();
-            parser.saveResult(result, new File("D:/Study/Programming/Java/ParsingBot/target/temp.txt"));
+            List<Vacancy> vacancies = parser.parse();
+            parser.saveResult(vacancies, new File("D:/Study/Programming/Java/ParsingBot/target/temp.txt"));
 
-            for (String vacancy : result.keySet()) {
-                //sendMessageTest(chatId, vacancy);
-                Map<String, String> subMap = result.get(vacancy);
-                for (String attr : subMap.keySet()) {
-                    //sendMessageTest(chatId, attr);
-                    if (attr.equals("link"))
-                        sendMessageTest(chatId, subMap.get(attr));
-                }
+
+            for (Vacancy vacancy : vacancies) {
+                sendMessageTest(chatId, vacancy.getLink());
             }
         } catch (IOException e) {
             log.error("Failed to initialise parser. Process aborted");
