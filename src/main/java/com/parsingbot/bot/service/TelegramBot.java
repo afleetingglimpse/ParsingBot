@@ -1,6 +1,7 @@
 package com.parsingbot.bot.service;
 
 import com.parsingbot.bot.config.BotConfig;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.parser.Parser;
 import org.parser.Vacancy;
@@ -13,7 +14,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 
 @Slf4j // logging
@@ -27,10 +27,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
 
-    /**
-     *
-     * @param update объект из пакета org.telegram.telegrambots.meta.api.objects. Попадает в метод при получении
-     * сообщения от юзера в телеге.
+    /** @param update объект из пакета org.telegram.telegrambots.meta.api.objects. Попадает в метод при получении
+     *  сообщения от юзера в телеге.
      */
     @Override
     public void onUpdateReceived(Update update) {
@@ -48,14 +46,12 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
             switch (messageText) {
-                case "/start": // убрать константы во внешний файл
+                case "/start" -> { // убрать константы во внешний файл
                     handleStartCommand(update);
-                    sendMessageTest(chatId, "No respond to /start command yet");
-                    break;
-
-                case "/hh":
-                    handleHHcommand(update);
-
+                    sendMessage(chatId, "No respond to /start command yet");
+                }
+                case "/hh" -> handleHHcommand(update);
+                default -> handleDefaultCommand(update);
             }
         }
     }
@@ -74,7 +70,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
             for (Vacancy vacancy : vacancies) {
-                sendMessageTest(chatId, vacancy.getLink());
+                sendMessage(chatId, vacancy.getLink());
             }
         } catch (IOException e) {
             log.error("Failed to initialise parser. Process aborted");
@@ -82,8 +78,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
 
-    @Deprecated
-    private void sendMessageTest(long chatId, String message) {
+    private void sendMessage(long chatId, String message) {
         SendMessage msg = new SendMessage(String.valueOf(chatId), message);
         try {
             execute(msg);
@@ -92,6 +87,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         catch (TelegramApiException e) {
             log.error("Error sending message" + e.getMessage());
         }
+    }
+
+    private void handleDefaultCommand(Update update) {
+        long chatId = update.getMessage().getChatId();
+        sendMessage(chatId, config.commandNotDefinedAnswer);
     }
 
 

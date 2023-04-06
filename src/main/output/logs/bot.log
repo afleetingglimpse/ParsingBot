@@ -1,0 +1,228 @@
+2023-04-05 13:43:22,615 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 9388 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:43:22,616 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:43:22,617 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:43:22,923 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:43:23,834 INFO c.p.b.BotApplication [main] Started BotApplication in 1.44 seconds (process running for 1.863)
+2023-04-05 13:43:30,341 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfsd from user Кирилл Устименко gwynae
+2023-04-05 13:43:30,341 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:43:40,432 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message /start\ from user Кирилл Устименко gwynae
+2023-04-05 13:43:40,432 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:43:47,960 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message /start from user Кирилл Устименко gwynae
+2023-04-05 13:43:48,149 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message No respond to /start command yet sent to user
+2023-04-05 13:43:49,317 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfsdf from user Кирилл Устименко gwynae
+2023-04-05 13:43:49,318 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:44:01,983 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.parsingbot.bot.BotApplicationTests]: BotApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-04-05 13:44:02,044 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.parsingbot.bot.BotApplication for test class com.parsingbot.bot.BotApplicationTests
+2023-04-05 13:44:02,277 INFO c.p.b.BotApplicationTests [main] Starting BotApplicationTests using Java 19.0.2 with PID 24124 (started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:44:02,278 DEBUG c.p.b.BotApplicationTests [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:44:02,278 INFO c.p.b.BotApplicationTests [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:44:02,536 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:44:03,186 INFO c.p.b.BotApplicationTests [main] Started BotApplicationTests in 1.053 seconds (process running for 1.759)
+2023-04-05 13:44:07,911 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 4060 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:44:07,912 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:44:07,913 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:44:08,216 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:44:08,878 INFO c.p.b.BotApplication [main] Started BotApplication in 1.194 seconds (process running for 1.624)
+2023-04-05 13:44:20,155 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message fsdfd from user Кирилл Устименко gwynae
+2023-04-05 13:44:20,155 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:45:34,425 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 23660 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:45:34,426 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:45:34,427 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:45:34,740 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:45:35,411 INFO c.p.b.BotApplication [main] Started BotApplication in 1.218 seconds (process running for 1.619)
+2023-04-05 13:45:38,353 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfsdf from user Кирилл Устименко gwynae
+2023-04-05 13:45:38,353 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:46:54,237 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 12692 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:46:54,238 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:46:54,239 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:46:54,543 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:46:55,210 INFO c.p.b.BotApplication [main] Started BotApplication in 1.197 seconds (process running for 1.607)
+2023-04-05 13:46:57,109 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfsdf from user Кирилл Устименко gwynae
+2023-04-05 13:46:57,110 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:47:09,374 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message dsfsdf from user Кирилл Устименко gwynae
+2023-04-05 13:47:09,374 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:47:11,782 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfsdf from user Кирилл Устименко gwynae
+2023-04-05 13:47:11,783 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:49:46,282 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 16068 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:49:46,283 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:49:46,284 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:49:46,573 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:49:47,221 INFO c.p.b.BotApplication [main] Started BotApplication in 1.159 seconds (process running for 1.553)
+2023-04-05 13:49:49,536 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message qewqwe from user Кирилл Устименко gwynae
+2023-04-05 13:49:49,537 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleDefaultCommand(TelegramBot.java:94)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:52:03,858 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 5128 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:52:03,859 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:52:03,860 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:52:04,178 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:52:04,849 INFO c.p.b.BotApplication [main] Started BotApplication in 1.223 seconds (process running for 1.639)
+2023-04-05 13:52:06,979 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message dsfsdf from user Кирилл Устименко gwynae
+2023-04-05 13:52:06,979 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleDefaultCommand(TelegramBot.java:94)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:52:13,243 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sqqqqqq from user Кирилл Устименко gwynae
+2023-04-05 13:52:13,244 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleDefaultCommand(TelegramBot.java:94)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:52:33,344 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 12364 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:52:33,345 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:52:33,346 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:52:33,657 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:52:34,359 INFO c.p.b.BotApplication [main] Started BotApplication in 1.26 seconds (process running for 1.691)
+2023-04-05 13:52:36,545 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message /start from user Кирилл Устименко gwynae
+2023-04-05 13:52:36,725 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message No respond to /start command yet sent to user
+2023-04-05 13:52:40,405 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfsd from user Кирилл Устименко gwynae
+2023-04-05 13:52:40,406 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:81)
+	at com.parsingbot.bot.service.TelegramBot.handleDefaultCommand(TelegramBot.java:94)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:53)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:55:14,149 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 21100 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:55:14,150 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:55:14,150 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:55:14,449 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:55:15,110 INFO c.p.b.BotApplication [main] Started BotApplication in 1.185 seconds (process running for 1.587)
+2023-04-05 13:55:16,706 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdss from user Кирилл Устименко gwynae
+2023-04-05 13:55:16,706 ERROR o.t.t.u.DefaultBotSession [Spamer1337Bot Telegram Executor] text is marked non-null but is null
+java.lang.NullPointerException: text is marked non-null but is null
+	at org.telegram.telegrambots.meta.api.methods.send.SendMessage.<init>(SendMessage.java:33)
+	at com.parsingbot.bot.service.TelegramBot.sendMessage(TelegramBot.java:82)
+	at com.parsingbot.bot.service.TelegramBot.handleDefaultCommand(TelegramBot.java:94)
+	at com.parsingbot.bot.service.TelegramBot.handleCommand(TelegramBot.java:54)
+	at com.parsingbot.bot.service.TelegramBot.onUpdateReceived(TelegramBot.java:35)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+2023-04-05 13:56:47,919 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 7884 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:56:47,920 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:56:47,921 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:56:48,227 INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor [main] Autowired annotation is not supported on static fields: public static java.lang.String com.parsingbot.bot.config.BotConfig.commandNotDefinedAnswer
+2023-04-05 13:56:48,879 INFO c.p.b.BotApplication [main] Started BotApplication in 1.185 seconds (process running for 1.588)
+2023-04-05 13:58:33,897 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 10220 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 13:58:33,898 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 13:58:33,899 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 13:58:34,866 INFO c.p.b.BotApplication [main] Started BotApplication in 1.191 seconds (process running for 1.601)
+2023-04-05 13:58:37,780 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message ff from user Кирилл Устименко gwynae
+2023-04-05 13:58:37,942 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message Unknown command. Type /help to get list of available commands. sent to user
+2023-04-05 14:00:40,094 INFO c.p.b.BotApplication [main] Starting BotApplication using Java 19.0.2 with PID 21252 (D:\Study\Programming\Java\ParsingBot\target\classes started by user in D:\Study\Programming\Java\ParsingBot)
+2023-04-05 14:00:40,095 DEBUG c.p.b.BotApplication [main] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-05 14:00:40,096 INFO c.p.b.BotApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-05 14:00:41,074 INFO c.p.b.BotApplication [main] Started BotApplication in 1.208 seconds (process running for 1.603)
+2023-04-05 14:00:47,257 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message sdfds from user Кирилл Устименко gwynae
+2023-04-05 14:00:47,344 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message Unknown command. Type /help to get list of available commands. sent to user
+2023-04-05 14:00:51,716 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message /help from user Кирилл Устименко gwynae
+2023-04-05 14:00:51,817 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message Unknown command. Type /help to get list of available commands. sent to user
+2023-04-05 14:00:54,136 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message /start from user Кирилл Устименко gwynae
+2023-04-05 14:00:54,244 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message No respond to /start command yet sent to user
+2023-04-05 14:00:57,739 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Received message /hh from user Кирилл Устименко gwynae
+2023-04-05 14:00:59,844 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78575424?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:00:59,949 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78787331?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,073 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78529368?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,184 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78064736?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,287 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/77931785?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,412 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78138409?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,540 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78435676?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,643 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/77731261?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,749 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/70768385?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:00,929 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78401603?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:01,129 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/76905463?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:01,341 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78850060?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:01,498 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78526406?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:01,631 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78693288?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:01,731 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78456731?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:01,883 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78909134?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:02,029 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/77729201?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:02,183 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78199338?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:02,329 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78066150?from=vacancy_search_list&query=junior+java sent to user
+2023-04-05 14:01:02,436 INFO c.p.b.s.TelegramBot [Spamer1337Bot Telegram Executor] Message https://hh.ru/vacancy/78003585?from=vacancy_search_list&query=junior+java sent to user

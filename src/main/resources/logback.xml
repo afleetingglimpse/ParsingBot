@@ -1,7 +1,7 @@
 <!--Logging configuration -->
 <configuration>
 
-    <property name="LOG" value="D:/Study/Programming/Java/ParsingBot/target/log/app.log"/>
+    <property name="LOG" value="D:/Study/Programming/Java/ParsingBot/src/main/output/logs/bot.log"/>
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG}</file>
