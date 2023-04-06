@@ -38,4 +38,4 @@ build/
 start.bat
 mvnw
 mvnw.cmd
-src/main/output/logs/bot.log
+src/main/output/logs/
