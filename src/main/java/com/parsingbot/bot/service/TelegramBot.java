@@ -21,9 +21,11 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
+    private final VacanciesFilter vacanciesFilter;
 
-    public TelegramBot(BotConfig config) {
+    public TelegramBot(BotConfig config, VacanciesFilter vacanciesFilter) {
         this.config = config;
+        this.vacanciesFilter = vacanciesFilter;
     }
 
 
@@ -34,49 +36,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         handleCommand(update);
     }
-
-    private void handleCommand(Update update) {
-        if (update.hasMessage() && update.getMessage().hasText()) {
-            String messageText = update.getMessage().getText();
-            log.info(String.format("Received message %s from user %s %s %s",
-                    messageText,
-                    update.getMessage().getChat().getFirstName(),
-                    update.getMessage().getChat().getLastName(),
-                    update.getMessage().getChat().getUserName()));
-            long chatId = update.getMessage().getChatId();
-
-            switch (messageText) {
-                case "/start" -> { // убрать константы во внешний файл
-                    handleStartCommand(update);
-                    sendMessage(chatId, "No respond to /start command yet");
-                }
-                case "/hh" -> handleHHcommand(update);
-                default -> handleDefaultCommand(update);
-            }
-        }
-    }
-
-    // Сделать норм обработку команды
-    private void handleStartCommand(Update update) {
-    }
-
-    // Сделать норм обработку команды
-    private void handleHHcommand(Update update) {
-        long chatId = update.getMessage().getChatId();
-        try {
-            Parser parser = new Parser();
-            List<Vacancy> vacancies = parser.parse();
-            parser.saveResult(vacancies, new File("D:/Study/Programming/Java/ParsingBot/target/temp.txt"));
-
-
-            for (Vacancy vacancy : vacancies) {
-                sendMessage(chatId, vacancy.getLink());
-            }
-        } catch (IOException e) {
-            log.error("Failed to initialise parser. Process aborted");
-        }
-    }
-
 
     private void sendMessage(long chatId, String message) {
         SendMessage msg = new SendMessage(String.valueOf(chatId), message);
@@ -89,10 +48,79 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
+    private void handleCommand(Update update) {
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            String messageText = update.getMessage().getText();
+            log.info(String.format("Received message %s from user %s %s %s",
+                    messageText,
+                    update.getMessage().getChat().getFirstName(),
+                    update.getMessage().getChat().getLastName(),
+                    update.getMessage().getChat().getUserName()));
+
+            switch (messageText) {
+                case "/start" -> handleStartCommand(update);
+                case "/hh" -> handleHHcommand(update);
+                default -> handleDefaultCommand(update);
+            }
+        }
+    }
+
+    // Сделать норм обработку команды
+    private void handleStartCommand(Update update) {
+        long chatId = update.getMessage().getChatId();
+        sendMessage(chatId, "No respond to /start command yet");
+    }
+
+    // Сделать норм обработку команды
+    private void handleHHcommand(Update update) {
+        long chatId = update.getMessage().getChatId();
+        try {
+            Parser parser = new Parser();
+            List<Vacancy> vacancies = parser.parse();
+            parser.saveResult(vacancies, new File("D:/Study/Programming/Java/ParsingBot/target/temp.txt"));
+            List<Vacancy> vacanciesFiltered = VacanciesFilter.filterByKeywords(vacancies, new String[]{"Junior", "ввапрапр"}, "name");
+
+            for (Vacancy vacancy : vacanciesFiltered) {
+                sendMessage(chatId, vacancy.getLink());
+            }
+        } catch (IOException e) {
+            log.error("Failed to initialise parser. Process aborted");
+        }
+    }
+
+
+
     private void handleDefaultCommand(Update update) {
         long chatId = update.getMessage().getChatId();
         sendMessage(chatId, config.commandNotDefinedAnswer);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @Override
