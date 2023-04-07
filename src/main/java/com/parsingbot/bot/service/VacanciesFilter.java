@@ -35,7 +35,7 @@ public class VacanciesFilter {
     }
 
 
-    public static List<Vacancy> filterByKeywords(List<Vacancy> vacancies, String[] keywords, String attributeName) {
+    public static List<Vacancy> filterByKeywords(List<Vacancy> vacancies, List<String> keywords, String attributeName) {
         List<Vacancy> vacanciesFiltered = vacancies;
         for (String keyword : keywords)
             vacanciesFiltered = filterByKeyword(vacanciesFiltered, keyword, attributeName);
