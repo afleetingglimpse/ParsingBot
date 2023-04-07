@@ -1,7 +1,6 @@
 package com.parsingbot.bot.service;
 
 import com.parsingbot.bot.config.BotConfig;
-import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.parser.Parser;
 import org.parser.Vacancy;
@@ -21,11 +20,9 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
-    private final VacanciesFilter vacanciesFilter;
 
-    public TelegramBot(BotConfig config, VacanciesFilter vacanciesFilter) {
+    public TelegramBot(BotConfig config) {
         this.config = config;
-        this.vacanciesFilter = vacanciesFilter;
     }
 
 
@@ -77,18 +74,15 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             Parser parser = new Parser();
             List<Vacancy> vacancies = parser.parse();
+            // vacancies = VacanciesFilter.filterByKeywords(vacancies, new String[] {"Junior", "Java"}, "name");
             parser.saveResult(vacancies, new File("D:/Study/Programming/Java/ParsingBot/target/temp.txt"));
-            List<Vacancy> vacanciesFiltered = VacanciesFilter.filterByKeywords(vacancies, new String[]{"Junior", "ввапрапр"}, "name");
-
-            for (Vacancy vacancy : vacanciesFiltered) {
+            for (Vacancy vacancy : vacancies) {
                 sendMessage(chatId, vacancy.getLink());
             }
         } catch (IOException e) {
             log.error("Failed to initialise parser. Process aborted");
         }
     }
-
-
 
     private void handleDefaultCommand(Update update) {
         long chatId = update.getMessage().getChatId();

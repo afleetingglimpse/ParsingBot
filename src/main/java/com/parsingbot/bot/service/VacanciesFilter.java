@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Slf4j // logging
-@Component
 public class VacanciesFilter {
 
 
