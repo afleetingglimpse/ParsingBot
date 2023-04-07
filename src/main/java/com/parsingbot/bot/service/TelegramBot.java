@@ -13,10 +13,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-
 @Slf4j // logging
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
@@ -27,10 +24,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         this.config = config;
     }
 
-
-    /** @param update объект из пакета org.telegram.telegrambots.meta.api.objects. Попадает в метод при получении
-     *  сообщения от юзера в телеге.
-     */
     @Override
     public void onUpdateReceived(Update update) {
         handleCommand(update);
@@ -56,12 +49,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                     update.getMessage().getChat().getLastName(),
                     update.getMessage().getChat().getUserName()));
 
-            switch (messageText) {
-                case "/start" -> handleStartCommand(update);
-                default -> handleDefaultCommand(update);
-            }
             if (messageText.startsWith("/hh"))
                 handleHHcommand(update);
+            else {
+                switch (messageText) {
+                    case "/start" -> handleStartCommand(update);
+                    default -> handleDefaultCommand(update);
+                }
+            }
         }
     }
 
@@ -93,7 +88,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             Parser parser = new Parser();
             List<Vacancy> vacancies = parser.parse(URL, numberOfVacancies);
             vacancies = VacanciesFilter.filterByKeywords(vacancies, params, "name");
-            parser.saveResult(vacancies, new File("D:/Study/Programming/Java/ParsingBot/target/temp.txt"));
+            parser.saveResult(vacancies, File.createTempFile("vacancies", "", new File(config.vacanciesSaveDir)));
             for (Vacancy vacancy : vacancies) {
                 sendMessage(chatId, vacancy.getLink());
             }

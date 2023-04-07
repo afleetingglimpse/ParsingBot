@@ -19,4 +19,7 @@ public class BotConfig {
     @Value("${bot.commandNotDefinedAnswer}")
     public String commandNotDefinedAnswer;
 
+    @Value("${bot.vacanciesSaveDir}")
+    public String vacanciesSaveDir;
+
 }

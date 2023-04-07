@@ -2,16 +2,13 @@ package com.parsingbot.bot.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.parser.Vacancy;
-import org.springframework.stereotype.Component;
-
 import java.util.*;
 
 @Slf4j // logging
 public class VacanciesFilter {
 
 
-    /** Функция возвращает список вакансий, у которых в атрибуте attributeName встречается ключевое слово keyword
-     * */
+    /** Функция возвращает список вакансий, у которых в атрибуте attributeName встречается ключевое слово keyword */
     public static List<Vacancy> filterByKeyword(List<Vacancy> vacancies, String keyword, String attributeName) {
         List<Vacancy> vacanciesFiltered = new ArrayList<>();
         for (Vacancy vacancy : vacancies) {
@@ -29,7 +26,6 @@ public class VacanciesFilter {
             else {
                 log.info(String.format("Attribute %s not found for vacancy %s", attributeName, vacancy.getLink()));
             }
-
         }
         return vacanciesFiltered;
     }
