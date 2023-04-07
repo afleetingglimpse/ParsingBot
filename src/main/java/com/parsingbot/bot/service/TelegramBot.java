@@ -77,7 +77,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             URL = Parser.getURL(messageWords[1]);
             numberOfVacancies = Integer.parseInt(messageWords[2]);
             for (int i = 3; i < messageWords.length; i++)
-                params.add(messageWords[i]);
+                params.add(messageWords[i].toLowerCase());
         }
         catch (IndexOutOfBoundsException e) {
             log.error(e.getMessage());
