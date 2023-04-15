@@ -22,4 +22,7 @@ public class BotConfig {
     @Value("${bot.vacanciesSaveDir}")
     public String vacanciesSaveDir;
 
+    @Value("${bot.dbServerUrl}")
+    String dbServerUrl;
+
 }

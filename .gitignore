@@ -39,3 +39,4 @@ start.bat
 mvnw
 mvnw.cmd
 src/main/output/logs/
+application.properties

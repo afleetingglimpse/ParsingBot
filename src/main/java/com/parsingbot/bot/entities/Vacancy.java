@@ -1,6 +1,7 @@
 package com.parsingbot.bot.entities;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -8,8 +9,11 @@ public class Vacancy {
     private Long id;
     private String name;
     private String link;
-    private Map<String, String> attributes;
-    private String companyName;
-    private String requirements;
-    private String additional;
+
+    public Map<String, String> getAttributes() {
+        Map<String, String> attributes = new HashMap<>();
+        attributes.put("name", name);
+        attributes.put("link", link);
+        return attributes;
+    }
 }

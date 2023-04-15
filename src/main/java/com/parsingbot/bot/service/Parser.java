@@ -72,18 +72,6 @@ public class Parser {
                     temp.setName(vacancyName);
                     temp.setLink(link);
 
-                    // для каждого атрибута добавляем инфу в мапу
-                    Map<String, String> vacancyAttributes = new HashMap<>();
-                    vacancyAttributes.put("name", vacancyName);
-                    vacancyAttributes.put("link", link);
-
-                    for (String attribute : attributes.keySet()) {
-                        Elements attributeElements = vacancy.getElementsByClass(attributes.get(attribute));
-                        String attrText = attributeElements.text();
-                        vacancyAttributes.put(attribute, attrText);
-                    }
-
-                    temp.setAttributes(vacancyAttributes);
                     vacancies.add(temp);
                 }
             }
@@ -101,25 +89,6 @@ public class Parser {
      *      <p>"атрибут1"  "значение атрибута1"</p>
      *      <p>"атрибут2"  "значение атрибута2"</p>
      * */
-    public void saveResult(List<Vacancy> vacancies, File saveFile) throws IOException {
-        BufferedWriter bf = new BufferedWriter(new FileWriter(saveFile));
-        bf.newLine();
-        for (Vacancy vacancy : vacancies) {
-            bf.write(vacancy.getName());
-            bf.newLine();
-            Map<String, String> vacancyAttributes = vacancy.getAttributes();
-            for (String vacancyAttribute : vacancyAttributes.keySet()) {
-                bf.write("\t");
-                bf.write(vacancyAttribute);
-                bf.write("\t");
-                bf.write(vacancyAttributes.get(vacancyAttribute));
-                bf.newLine();
-            }
-            bf.newLine();
-        }
-        bf.close();
-    }
-
 
     public List<Vacancy> parse() throws IOException {
         return getVacanciesAttributes(defaultURL, defaultNumberOfVacancies, defaultVacancyBodyClass,

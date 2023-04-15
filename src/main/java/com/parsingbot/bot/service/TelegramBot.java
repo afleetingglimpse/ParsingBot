@@ -3,14 +3,18 @@ package com.parsingbot.bot.service;
 import com.parsingbot.bot.config.BotConfig;
 import com.parsingbot.bot.entities.Vacancy;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.File;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j // logging
@@ -18,6 +22,13 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
+
+    private URL url;
+
+    @Autowired
+    public void setUrl(BotConfig config) throws MalformedURLException {
+        this.url = new URL(config.getDbServerUrl());
+    }
 
     public TelegramBot(BotConfig config) {
         this.config = config;
@@ -87,10 +98,20 @@ public class TelegramBot extends TelegramLongPollingBot {
             Parser parser = new Parser();
             List<Vacancy> vacancies = parser.parse(URL, numberOfVacancies);
             vacancies = VacanciesFilter.filterByKeywords(vacancies, params, "name");
-            parser.saveResult(vacancies, File.createTempFile("vacancies", "", new File(config.vacanciesSaveDir)));
-            for (Vacancy vacancy : vacancies) {
+
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json");
+
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            //InputStream responseStream = con.getInputStream();
+            wr.close();
+
+
+
+
+            for (Vacancy vacancy : vacancies)
                 sendMessage(chatId, vacancy.getLink());
-            }
         } catch (IOException e) {
             log.error("Failed to initialise parser. Process aborted");
         }
