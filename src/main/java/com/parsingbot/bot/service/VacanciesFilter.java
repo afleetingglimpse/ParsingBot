@@ -1,7 +1,7 @@
 package com.parsingbot.bot.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.parser.Vacancy;
+import com.parsingbot.bot.entities.Vacancy;
 import java.util.*;
 
 @Slf4j // logging

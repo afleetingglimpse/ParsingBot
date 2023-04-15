@@ -1,9 +1,8 @@
 package com.parsingbot.bot.service;
 
 import com.parsingbot.bot.config.BotConfig;
+import com.parsingbot.bot.entities.Vacancy;
 import lombok.extern.slf4j.Slf4j;
-import org.parser.Parser;
-import org.parser.Vacancy;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
