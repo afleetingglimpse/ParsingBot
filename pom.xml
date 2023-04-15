@@ -41,21 +41,19 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 
 		<dependency>
+<<<<<<< HEAD
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.5.4</version>
 		</dependency>
 
 		<dependency>
+=======
+>>>>>>> feature
 			<groupId>org.parser</groupId>
 			<artifactId>Parsing</artifactId>
 			<version>1.1.4</version>
