@@ -10,9 +10,11 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-@Slf4j
+import java.util.logging.Logger;
+
 @Component
 public class BotInitializer {
+    private static final Logger LOGGER = Logger.getLogger(BotInitializer.class.getName());
     @Autowired
     TelegramBot bot;
 
@@ -23,7 +25,7 @@ public class BotInitializer {
             telegramBotsApi.registerBot(bot);
         }
         catch (TelegramApiException e) {
-            log.error("Error occurred" + e.getMessage());
+            LOGGER.warning("Error occurred" + e.getMessage());
         }
     }
 

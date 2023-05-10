@@ -1,8 +1,12 @@
 package com.parsingbot.bot.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.parsingbot.bot.config.BotConfig;
 import com.parsingbot.bot.entities.Vacancy;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -10,25 +14,24 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-@Slf4j // logging
+import java.util.logging.Logger;
+
+import static java.net.URI.create;
+
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
-
-    private URL url;
-
-    @Autowired
-    public void setUrl(BotConfig config) throws MalformedURLException {
-        this.url = new URL(config.getDbServerUrl());
-    }
+    private static final Logger LOGGER = Logger.getLogger(TelegramBot.class.getName());
 
     public TelegramBot(BotConfig config) {
         this.config = config;
@@ -43,17 +46,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage msg = new SendMessage(String.valueOf(chatId), message);
         try {
             execute(msg);
-            log.info(String.format("Message %s sent to user", msg.getText()));
+            LOGGER.info(String.format("Message %s sent to user", msg.getText()));
         }
         catch (TelegramApiException e) {
-            log.error("Error sending message" + e.getMessage());
+            LOGGER.warning("Error sending message" + e.getMessage());
         }
     }
 
     private void handleCommand(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
-            log.info(String.format("Received message %s from user %s %s %s",
+            LOGGER.info(String.format("Received message %s from user %s %s %s",
                     messageText,
                     update.getMessage().getChat().getFirstName(),
                     update.getMessage().getChat().getLastName(),
@@ -90,7 +93,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 params.add(messageWords[i].toLowerCase());
         }
         catch (IndexOutOfBoundsException e) {
-            log.error(e.getMessage());
+            LOGGER.warning(e.getMessage());
         }
 
         // parsing and sending
@@ -99,23 +102,69 @@ public class TelegramBot extends TelegramLongPollingBot {
             List<Vacancy> vacancies = parser.parse(URL, numberOfVacancies);
             vacancies = VacanciesFilter.filterByKeywords(vacancies, params, "name");
 
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Content-Type", "application/json");
+            List<Vacancy> vacanciesDB = getAllVacanciesDB("http://localhost:8000/");
 
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            //InputStream responseStream = con.getInputStream();
-            wr.close();
-
-
-
-
-            for (Vacancy vacancy : vacancies)
-                sendMessage(chatId, vacancy.getLink());
+            vacancies.forEach(vacancy -> {
+                if (!vacanciesDB.contains(vacancy)) {
+                    saveVacancy(vacancy, "http://localhost:8000/");
+                    sendMessage(chatId, vacancy.getLink());
+                }
+            });
         } catch (IOException e) {
-            log.error("Failed to initialise parser. Process aborted");
+            LOGGER.warning("Failed to initialise parser. Process aborted");
         }
     }
+
+    private List<Vacancy> getAllVacanciesDB(String URI) {
+        HttpClient client = HttpClient.newHttpClient();
+        List<Vacancy> vacancies = null;
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .setHeader("Content-Type","application/json")
+                .uri(create(URI))
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            vacancies = objectMapper.readValue(response.body(), new TypeReference<List<Vacancy>>() {});
+            LOGGER.warning("Request sent");
+        } catch (IOException e) {
+            LOGGER.warning(Arrays.toString(e.getStackTrace()));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return vacancies;
+    }
+
+
+    private void saveVacancy(Vacancy vacancy, String URI) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody;
+        try {
+            requestBody = objectMapper.writeValueAsString(vacancy);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .setHeader("Content-Type","application/json")
+                .uri(create(URI))
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            LOGGER.warning("Request sent");
+        } catch (IOException e) {
+            LOGGER.warning(Arrays.toString(e.getStackTrace()));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
     private void handleDefaultCommand(Update update) {
         long chatId = update.getMessage().getChatId();
