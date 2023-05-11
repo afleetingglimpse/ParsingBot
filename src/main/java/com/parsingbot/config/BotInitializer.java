@@ -1,7 +1,6 @@
-package com.parsingbot.bot.config;
+package com.parsingbot.config;
 
-import com.parsingbot.bot.service.TelegramBot;
-import lombok.extern.slf4j.Slf4j;
+import com.parsingbot.service.bot.TelegramBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;

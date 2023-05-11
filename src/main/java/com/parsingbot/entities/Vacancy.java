@@ -1,11 +1,9 @@
-package com.parsingbot.bot.entities;
-import lombok.Data;
+package com.parsingbot.entities;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@Data
 public class Vacancy {
     private Long id;
     private String name;
@@ -16,6 +14,26 @@ public class Vacancy {
         attributes.put("name", name);
         attributes.put("link", link);
         return attributes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     @Override

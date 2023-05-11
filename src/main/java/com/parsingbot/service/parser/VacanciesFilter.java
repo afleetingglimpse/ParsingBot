@@ -1,10 +1,9 @@
-package com.parsingbot.bot.service;
+package com.parsingbot.service.parser;
 
-import lombok.extern.slf4j.Slf4j;
-import com.parsingbot.bot.entities.Vacancy;
+import com.parsingbot.entities.Vacancy;
+
 import java.util.*;
 
-@Slf4j // logging
 public class VacanciesFilter {
 
 
@@ -19,12 +18,10 @@ public class VacanciesFilter {
                     vacanciesFiltered.add(vacancy);
                 }
                 else {
-                    log.info(String.format("Vacancy %s doesn't contain keyword %s",
-                            vacancy.getLink(), keyword));
+
                 }
             }
             else {
-                log.info(String.format("Attribute %s not found for vacancy %s", attributeName, vacancy.getLink()));
             }
         }
         return vacanciesFiltered;

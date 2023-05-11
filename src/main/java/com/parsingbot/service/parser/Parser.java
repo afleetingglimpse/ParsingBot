@@ -1,10 +1,10 @@
-package com.parsingbot.bot.service;
+package com.parsingbot.service.parser;
 
+import com.parsingbot.entities.Vacancy;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import com.parsingbot.bot.entities.Vacancy;
 
 import java.io.*;
 import java.util.*;
@@ -102,7 +102,7 @@ public class Parser {
         return getVacanciesAttributes(URL, numberOfVacancies, vacancyBodyClass, vacancyTitleClass, attributes);
     }
 
-    public List<com.parsingbot.bot.entities.Vacancy> parse(String URL, int numberOfVacancies) throws IOException {
+    public List<Vacancy> parse(String URL, int numberOfVacancies) throws IOException {
 
         return getVacanciesAttributes(URL, numberOfVacancies, defaultVacancyBodyClass,
                                       defaultVacancyTitleClass, attributes);
