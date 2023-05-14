@@ -22,6 +22,8 @@ public class CommandHandler {
 
     @Autowired
     private RequestHandler requestHandler;
+    @Autowired
+    private Parser parser;
 
     public void handleCommand(Update update, TelegramBot bot) {
         if (update.hasMessage() && update.getMessage().hasText()) {
@@ -69,7 +71,6 @@ public class CommandHandler {
 
         // parsing and sending
         try {
-            Parser parser = new Parser();
             List<Vacancy> vacancies = parser.parse(URL, numberOfVacancies);
             vacancies = VacanciesFilter.filterByKeywords(vacancies, keywords, "name");
 

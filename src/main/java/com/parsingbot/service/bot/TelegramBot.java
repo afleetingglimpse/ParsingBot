@@ -1,6 +1,7 @@
 package com.parsingbot.service.bot;
 
 import com.parsingbot.config.BotConfig;
+import com.parsingbot.service.parser.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;

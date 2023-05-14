@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.util.*;
 import java.util.regex.PatternSyntaxException;
+@Component
 public class Parser {
 
     // константы
@@ -50,7 +51,7 @@ public class Parser {
      * @return список объектов вакансий
      * Например: <"Java developer", <"link", "http://link.com">>
      * */
-    private static List<Vacancy> getVacanciesAttributes(String URL, int numberOfVacancies, String vacancyBodyClass,
+    private List<Vacancy> getVacanciesAttributes(String URL, int numberOfVacancies, String vacancyBodyClass,
                                                         String vacancyTitleClass, Map<String, String> attributes)
                                                         throws IOException {
 
@@ -59,8 +60,6 @@ public class Parser {
 
         RequestHandler requestHandler = new RequestHandler();
         List<Vacancy> vacanciesDB = requestHandler.getAllVacanciesDB("http://localhost:8000/");
-
-
 
         while (vacancies.size() < numberOfVacancies) {
             Document doc = Jsoup.connect(URL + page).get();
