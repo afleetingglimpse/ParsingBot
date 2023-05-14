@@ -1,23 +1,24 @@
 package com.parsingbot.service.parser;
 
 import com.parsingbot.entities.Vacancy;
+import com.parsingbot.service.requests.RequestHandler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.*;
 import java.util.regex.PatternSyntaxException;
-
 public class Parser {
 
     // константы
-    public static final String defaultURL = "https://hh.ru/search/vacancy?text=junior+java&area=1&page=";
-    public static final String defaultLinkKey = "href";
-    public static final String defaultVacancyBodyClass = "vacancy-serp-item-body";
-    public static final String defaultVacancyTitleClass = "serp-item__title";
-    public static final int defaultNumberOfVacancies = 20;
+    public static final String DEFAULT_URL = "https://hh.ru/search/vacancy?text=junior+java&area=1&page=";
+    public static final String DEFAULT_LINK_KEY = "href";
+    public static final String DEFAULT_VACANCY_BODY_CLASS = "vacancy-serp-item-body";
+    public static final String DEFAULT_VACANCY_TITLE_CLASS = "serp-item__title";
+    public static final int DEFAULT_NUMBER_OF_VACANCIES = 20;
 
     // атрибуты поиска
     private final Map<String, String> attributes;
@@ -25,7 +26,7 @@ public class Parser {
 
     //HH принимает запросы в виде /vacancy?text=YOUR+TEXT+HERE&area=...
     public static String getURL(String arg) {
-        String urlBody = defaultURL;
+        String urlBody = DEFAULT_URL;
         try {
             String[] urlSplit = arg.split(" ");
             urlBody = String.join("+", urlSplit);
@@ -56,6 +57,11 @@ public class Parser {
         int page = 0;
         List<Vacancy> vacancies = new ArrayList<>(20);
 
+        RequestHandler requestHandler = new RequestHandler();
+        List<Vacancy> vacanciesDB = requestHandler.getAllVacanciesDB("http://localhost:8000/");
+
+
+
         while (vacancies.size() < numberOfVacancies) {
             Document doc = Jsoup.connect(URL + page).get();
             Elements vacanciesElements = doc.getElementsByClass(vacancyBodyClass);
@@ -65,14 +71,15 @@ public class Parser {
                     // получение основной информации о вакансии
                     Elements mainElements = vacancy.getElementsByClass(vacancyTitleClass);
                     String vacancyName = mainElements.text();
-                    String link = mainElements.attr(defaultLinkKey);
+                    String link = mainElements.attr(DEFAULT_LINK_KEY);
 
                     // создание объекта вакансии и заполнение основных полей
                     Vacancy temp = new Vacancy();
                     temp.setName(vacancyName);
                     temp.setLink(link);
 
-                    vacancies.add(temp);
+                    if (!vacanciesDB.contains(temp))
+                        vacancies.add(temp);
                 }
             }
             page++;
@@ -91,8 +98,8 @@ public class Parser {
      * */
 
     public List<Vacancy> parse() throws IOException {
-        return getVacanciesAttributes(defaultURL, defaultNumberOfVacancies, defaultVacancyBodyClass,
-                                      defaultVacancyTitleClass, attributes);
+        return getVacanciesAttributes(DEFAULT_URL, DEFAULT_NUMBER_OF_VACANCIES, DEFAULT_VACANCY_BODY_CLASS,
+                DEFAULT_VACANCY_TITLE_CLASS, attributes);
     }
 
 
@@ -104,14 +111,14 @@ public class Parser {
 
     public List<Vacancy> parse(String URL, int numberOfVacancies) throws IOException {
 
-        return getVacanciesAttributes(URL, numberOfVacancies, defaultVacancyBodyClass,
-                                      defaultVacancyTitleClass, attributes);
+        return getVacanciesAttributes(URL, numberOfVacancies, DEFAULT_VACANCY_BODY_CLASS,
+                DEFAULT_VACANCY_TITLE_CLASS, attributes);
     }
 
 
     public List<Vacancy> parse(Map<String, String> attributes) throws IOException {
-        return getVacanciesAttributes(defaultURL, defaultNumberOfVacancies, defaultVacancyBodyClass,
-                                      defaultVacancyTitleClass, attributes);
+        return getVacanciesAttributes(DEFAULT_URL, DEFAULT_NUMBER_OF_VACANCIES, DEFAULT_VACANCY_BODY_CLASS,
+                DEFAULT_VACANCY_TITLE_CLASS, attributes);
     }
 
 
@@ -124,6 +131,6 @@ public class Parser {
     public Parser() throws IOException {
         attributes = new HashMap<>();
         attributes.put("companyName" , "bloko-link bloko-link_kind-tertiary");
-        attributes.put("link", defaultVacancyTitleClass);
+        attributes.put("link", DEFAULT_VACANCY_TITLE_CLASS);
     }
 }

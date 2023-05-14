@@ -52,8 +52,8 @@ public class CommandHandler {
     private void handleHHcommand(Update update, TelegramBot bot) {
         long chatId = update.getMessage().getChatId();
         String[] messageWords = update.getMessage().getText().split(" ");
-        String URL = Parser.defaultURL;
-        int numberOfVacancies = Parser.defaultNumberOfVacancies;
+        String URL = Parser.DEFAULT_URL;
+        int numberOfVacancies = Parser.DEFAULT_NUMBER_OF_VACANCIES;
         List<String> keywords = new ArrayList<>();
         try {
             URL = Parser.getURL(messageWords[1]);
