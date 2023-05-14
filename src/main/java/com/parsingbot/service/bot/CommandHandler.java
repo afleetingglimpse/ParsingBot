@@ -73,13 +73,11 @@ public class CommandHandler {
             List<Vacancy> vacancies = parser.parse(URL, numberOfVacancies);
             vacancies = VacanciesFilter.filterByKeywords(vacancies, keywords, "name");
 
-            List<Vacancy> vacanciesDB = requestHandler.getAllVacanciesDB(bot.getConfig().getGetAllVacanciesURI());
+            // List<Vacancy> vacanciesDB = requestHandler.getAllVacanciesDB(bot.getConfig().getGetAllVacanciesURI());
 
             vacancies.forEach(vacancy -> {
-                if (!vacanciesDB.contains(vacancy)) {
-                    requestHandler.saveVacancy(vacancy, "http://localhost:8000/");
-                    bot.sendMessage(chatId, vacancy.getLink());
-                }
+                requestHandler.saveVacancy(vacancy, "http://localhost:8000/");
+                bot.sendMessage(chatId, vacancy.getLink());
             });
         } catch (IOException e) {
             LOGGER.warning("Failed to initialise parser. Process aborted");
