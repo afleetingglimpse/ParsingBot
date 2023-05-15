@@ -1,5 +1,6 @@
 package com.parsingbot.service.bot;
 
+import com.parsingbot.config.BotConfig;
 import com.parsingbot.entities.Vacancy;
 import com.parsingbot.service.parser.Parser;
 import com.parsingbot.service.parser.VacanciesFilter;
@@ -22,8 +23,12 @@ public class CommandHandler {
 
     @Autowired
     private RequestHandler requestHandler;
+
     @Autowired
     private Parser parser;
+
+    @Autowired
+    private BotConfig botConfig;
 
     public void handleCommand(Update update, TelegramBot bot) {
         if (update.hasMessage() && update.getMessage().hasText()) {
@@ -39,7 +44,6 @@ public class CommandHandler {
 
             else
                 switch (messageText) {
-                    //case "/hh" -> handleHHcommand(update, bot);
                     case "/start" -> handleStartCommand(update, bot);
                     default -> handleDefaultCommand(update, bot);
                 }
@@ -53,20 +57,26 @@ public class CommandHandler {
 
     private void handleHHcommand(Update update, TelegramBot bot) {
         long chatId = update.getMessage().getChatId();
+
         String[] messageWords = update.getMessage().getText().split(" ");
-        String URL = Parser.DEFAULT_URL;
+
+        String URL = Parser.DEFAULT_SEARCH_URL;
         int numberOfVacancies = Parser.DEFAULT_NUMBER_OF_VACANCIES;
         List<String> keywords = new ArrayList<>();
-        try {
-            URL = Parser.getURL(messageWords[1]);
+
+        if (messageWords.length > 1) {
+            URL = Parser.getUrlWithKeywords(messageWords[1]);
             LOGGER.info("Parsing URL: %s".formatted(URL));
-            numberOfVacancies = Integer.parseInt(messageWords[2]);
-            for (int i = 3; i < messageWords.length; i++)
-                keywords.add(messageWords[i]);
-            LOGGER.info("Parsing keywords are: %s".formatted(keywords));
         }
-        catch (IndexOutOfBoundsException e) {
-            LOGGER.info("No additional params found for commands /hh");
+
+        if (messageWords.length > 2) {
+            numberOfVacancies = Integer.parseInt(messageWords[2]);
+            LOGGER.info("Number of vacancies: %s".formatted(numberOfVacancies));
+        }
+
+        if (messageWords.length > 3) {
+            keywords.addAll(Arrays.asList(messageWords).subList(3, messageWords.length));
+            LOGGER.info("Parsing keywords are: %s".formatted(keywords));
         }
 
         // parsing and sending
@@ -74,13 +84,12 @@ public class CommandHandler {
             List<Vacancy> vacancies = parser.parse(URL, numberOfVacancies);
             vacancies = VacanciesFilter.filterByKeywords(vacancies, keywords, "name");
 
-            // List<Vacancy> vacanciesDB = requestHandler.getAllVacanciesDB(bot.getConfig().getGetAllVacanciesURI());
-
             vacancies.forEach(vacancy -> {
-                requestHandler.saveVacancy(vacancy, "http://localhost:8000/");
+                requestHandler.saveVacancy(vacancy, botConfig.getSaveVacancyURI());
                 bot.sendMessage(chatId, vacancy.getLink());
             });
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             LOGGER.warning("Failed to initialise parser. Process aborted");
             LOGGER.warning(e.getMessage());
             LOGGER.warning(Arrays.toString(e.getStackTrace()));
